@@ -1,8 +1,8 @@
 {
   "name": "esnext-async",
   "version": "0.0.1",
-  "description": "",
-  "keywords": [],
+  "description": "Patterns for asynchronous iteration in ES.next",
+  "keywords": ["esnext", "async", "observable", "promise"],
   "homepage": "https://github.com/vinsonchuong/esnext-async",
   "bugs": "https://github.com/vinsonchuong/esnext-async/issues",
   "license": "MIT",
@@ -14,7 +14,6 @@
   ],
   "main": "src/index.js",
   "bin": {
-    "esnext-async": "src/bin/esnext-async.js"
   },
   "repository": {
     "type": "git",
@@ -25,11 +24,12 @@
     "test": "eslint && jasmine"
   },
   "dependencies": {
-    "node-promise-es6": "^0.3.1"
+    "zen-observable": "^0.2.1"
   },
   "devDependencies": {
     "dist-es6": "^0.1.10",
     "jasmine-es6": "^0.1.6",
-    "eslint-defaults": "^0.2.4"
+    "eslint-defaults": "^0.2.4",
+    "es-observable-tests": "^0.2.8"
   }
 }

@@ -1,18 +1,13 @@
 # esnext-async
 [![Build Status](https://travis-ci.org/vinsonchuong/esnext-async.svg?branch=master)](https://travis-ci.org/vinsonchuong/esnext-async)
-[![Code Climate](https://codeclimate.com/github/vinsonchuong/esnext-async/badges/gpa.svg)](https://codeclimate.com/github/vinsonchuong/esnext-async)
 
-Prints Hello World!
+Patterns for asynchronous iteration in ES.next
 
 ## Installing
 `esnext-async` is available as an
 [npm package](https://www.npmjs.com/package/esnext-async).
 
 ## Usage
-From the command line, run:
-```bash
-esnext-async
-```
 
 ## Development
 ### Getting Started
