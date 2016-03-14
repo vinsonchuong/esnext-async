@@ -1,6 +1,5 @@
-import {catchError} from 'jasmine-es6'
+import {catchError} from 'jasmine-es6';
 import {Observable, AwaitableObservable} from 'esnext-async';
-import {runTests as observableTests} from 'es-observable-tests';
 
 describe('AwaitableObservable', () => {
   it('inherits from Observable', async () => {
