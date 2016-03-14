@@ -2,11 +2,11 @@ import {Observable} from 'esnext-async';
 import {runTests as observableTests} from 'es-observable-tests';
 
 async function values(observable) {
-  const values = [];
+  const results = [];
   await observable.forEach((value) => {
-    values.push(value);
+    results.push(value);
   });
-  return values;
+  return results;
 }
 
 describe('Observable', async () => {
