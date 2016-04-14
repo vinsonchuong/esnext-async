@@ -1,6 +1,6 @@
 import {Signal} from 'esnext-async';
 
-fdescribe('Signal', () => {
+describe('Signal', () => {
   describe('.time', () => {
     it('represents the Unix Epoch time', () => {
       expect(Signal.time.valueOf())

@@ -12,4 +12,4 @@ export default class Signal {
   }
 }
 
-Signal.time = new Signal(() => new Date().valueOf())
+Signal.time = new Signal(() => new Date().valueOf());
