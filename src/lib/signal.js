@@ -10,4 +10,12 @@ export default function signal(name, definition = definitions[name]) {
   return definition(...signals);
 }
 
+signal.discrete = function(name, source) {
+  let currentValue;
+  signal(name, () => currentValue);
+  source((newValue) => {
+    currentValue = newValue;
+  });
+}
+
 signal('time', () => new Date().valueOf());

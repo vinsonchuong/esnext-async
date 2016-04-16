@@ -9,6 +9,21 @@ describe('Signal', () => {
     expect(signal('one', () => 1)).toBe(1);
   });
 
+  it('represent discrete functions', () => {
+    let produce;
+    signal.discrete('events', (innerProduce) => {
+      produce = innerProduce;
+    });
+
+    expect(signal('events')).toBeUndefined();
+
+    produce(1);
+    expect(signal('events')).toBe(1);
+
+    produce(2);
+    expect(signal('events')).toBe(2);
+  });
+
   it('can combine signals', () => {
     signal('one', () => 1);
     signal('two', () => 2);
