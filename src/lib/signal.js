@@ -21,8 +21,10 @@ signal.discrete = function discrete(name, source) {
   signal(name, definition);
   source((newValue) => {
     currentValue = newValue;
+
     for (const read of definition.subscribers) {
-      read(newValue);
+      const signals = parameterNames(read).map((param) => signal(param));
+      read(...signals);
     }
   });
 };

@@ -32,24 +32,58 @@ describe('Signal', () => {
     expect(signal('three')).toBe(3);
   });
 
-  it('can subscribe to changes', () => {
+  function testDiscreteSignal(name) {
     let produce;
-    signal.discrete('events', (innerProduce) => {
+    signal.discrete(name, (innerProduce) => {
       produce = innerProduce;
     });
+    return produce;
+  }
+
+  it('can subscribe to changes', () => {
+    const changeUsername = testDiscreteSignal('username');
+    const changePassword = testDiscreteSignal('password');
 
     const result = [];
-    signal.subscribe((events) => {
-      result.push(events);
+    signal.subscribe((username, password) => {
+      result.push([username, password]);
     });
 
-    produce(1);
-    expect(result).toEqual([1]);
+    /* eslint-disable lines-around-comment, no-undefined */
+    changeUsername('b');
+    expect(result).toEqual([
+      ['b', undefined]
+    ]);
 
-    produce(2);
-    expect(result).toEqual([1, 2]);
+    changeUsername('bob');
+    expect(result).toEqual([
+      ['b', undefined],
+      ['bob', undefined]
+    ]);
 
-    produce(3);
-    expect(result).toEqual([1, 2, 3]);
+    changePassword('p');
+    expect(result).toEqual([
+      ['b', undefined],
+      ['bob', undefined],
+      ['bob', 'p']
+    ]);
+
+    changeUsername('bobby');
+    expect(result).toEqual([
+      ['b', undefined],
+      ['bob', undefined],
+      ['bob', 'p'],
+      ['bobby', 'p']
+    ]);
+
+    changePassword('password');
+    expect(result).toEqual([
+      ['b', undefined],
+      ['bob', undefined],
+      ['bob', 'p'],
+      ['bobby', 'p'],
+      ['bobby', 'password']
+    ]);
+    /* eslint-enable lines-around-comment, no-undefined */
   });
 });
