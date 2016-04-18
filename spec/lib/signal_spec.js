@@ -38,9 +38,18 @@ describe('Signal', () => {
       produce = innerProduce;
     });
 
-    let result = [];
+    const result = [];
     signal.subscribe((events) => {
       result.push(events);
     });
+
+    produce(1);
+    expect(result).toEqual([1]);
+
+    produce(2);
+    expect(result).toEqual([1, 2]);
+
+    produce(3);
+    expect(result).toEqual([1, 2, 3]);
   });
 });

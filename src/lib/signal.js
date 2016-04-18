@@ -13,13 +13,15 @@ export default function signal(name, definition = definitions[name]) {
 signal.discrete = function discrete(name, source) {
   let currentValue;
 
-  const definition = () => currentValue;
+  function definition() {
+    return currentValue;
+  }
   definition.subscribers = [];
 
   signal(name, definition);
   source((newValue) => {
     currentValue = newValue;
-    for (const read in definition.subscribers) {
+    for (const read of definition.subscribers) {
       read(newValue);
     }
   });
@@ -28,8 +30,8 @@ signal.discrete = function discrete(name, source) {
 signal.subscribe = function subscribe(read) {
   const dependencies = parameterNames(read);
   for (const dependency of dependencies) {
-    definitions[dependency].subscribers = read;
+    definitions[dependency].subscribers.push(read);
   }
-}
+};
 
 signal('time', () => new Date().valueOf());
