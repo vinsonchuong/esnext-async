@@ -31,4 +31,16 @@ describe('Signal', () => {
 
     expect(signal('three')).toBe(3);
   });
+
+  it('can subscribe to changes', () => {
+    let produce;
+    signal.discrete('events', (innerProduce) => {
+      produce = innerProduce;
+    });
+
+    let result = [];
+    signal.subscribe((events) => {
+      result.push(events);
+    });
+  });
 });
