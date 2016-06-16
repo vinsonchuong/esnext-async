@@ -9,6 +9,34 @@ Patterns for asynchronous iteration in ES.next
 
 ## Usage
 
+### Entry Points
+
+#### Run
+```js
+import {run} from 'esnext-async';
+
+run(async () => {
+  const foo = await fs.readFile('foo');
+  await fs.writeFile('bar', foo);
+});
+```
+
+Execute an `async` function, re-throwing any exceptions and making them fatal.
+
+#### Loop
+```js
+import {loop} from 'esnext-async';
+
+loop(async () => {
+  const value = await observable;
+  console.log(value);
+});
+```
+
+Execute an `async` function over and over, re-throwing any exceptions and
+making them fatal. `loop` waits until an "iteration" is complete before
+executing the next iteration.
+
 ### Observables
 
 #### Observable
