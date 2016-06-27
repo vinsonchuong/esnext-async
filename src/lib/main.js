@@ -9,15 +9,17 @@ export async function run(fn) {
 }
 
 export async function loop(fn) {
-  try {
+  await run(async () => {
     /* eslint-disable no-constant-condition, lines-around-comment */
     while (true) {
       await fn();
     }
     /* eslint-enable no-constant-condition, lines-around-comment */
-  } catch (error) {
-    setTimeout(() => {
-      throw error;
-    }, 0);
-  }
+  });
+}
+
+export function tryCatch(fn) {
+  return async () => {
+    await run(fn);
+  };
 }

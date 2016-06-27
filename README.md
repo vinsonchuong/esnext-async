@@ -37,6 +37,20 @@ Execute an `async` function over and over, re-throwing any exceptions and
 making them fatal. `loop` waits until an "iteration" is complete before
 executing the next iteration.
 
+#### TryCatch
+```js
+import {tryCatch} from 'esnext-async';
+
+app.get('/', tryCatch(async (request, response) => {
+  const data = await database.read();
+  res.send(data);
+}));
+```
+
+Wrap an `async` callback function and re-throw any exceptions. `tryCatch` is
+useful when passing `async` callback functions to libraries that are unaware
+of `async` functions.
+
 ### Observables
 
 #### Observable
