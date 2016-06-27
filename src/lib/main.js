@@ -1,6 +1,6 @@
-export async function run(fn) {
+export async function run(fn, ...args) {
   try {
-    await fn();
+    await fn(...args);
   } catch (error) {
     setTimeout(() => {
       throw error;
@@ -19,7 +19,7 @@ export async function loop(fn) {
 }
 
 export function tryCatch(fn) {
-  return async () => {
-    await run(fn);
+  return async (...args) => {
+    await run(fn, ...args);
   };
 }
