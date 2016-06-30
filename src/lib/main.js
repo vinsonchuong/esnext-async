@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return, lines-around-comment */
 export async function run(fn, ...args) {
   try {
     return await fn(...args);
@@ -7,6 +8,7 @@ export async function run(fn, ...args) {
     }, 0);
   }
 }
+/* eslint-enable consistent-return, lines-around-comment */
 
 export async function loop(fn) {
   await run(async () => {
@@ -19,7 +21,5 @@ export async function loop(fn) {
 }
 
 export function tryCatch(fn) {
-  return async (...args) => {
-    return await run(fn, ...args);
-  };
+  return async (...args) => await run(fn, ...args);
 }
