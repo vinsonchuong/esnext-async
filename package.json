@@ -24,12 +24,12 @@
     "test": "eslint && jasmine"
   },
   "dependencies": {
-    "zen-observable": "^0.2.1"
+    "zen-observable": "^0.3.0"
   },
   "devDependencies": {
-    "dist-es6": "^0.1.18",
-    "jasmine-es6": "^0.1.10",
-    "eslint-defaults": "^0.2.7",
-    "es-observable-tests": "^0.2.8"
+    "dist-es6": "^0.2.3",
+    "jasmine-es6": "^0.2.1",
+    "eslint-defaults": "^0.3.1",
+    "es-observable-tests": "^0.3.0"
   }
 }
