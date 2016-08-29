@@ -78,7 +78,7 @@ An implementation of the
 ```js
 import {AwaitableObservable} from 'esnext-async';
 
-const observable = new Observable((observer) => {
+const observable = new AwaitableObservable((observer) => {
   setTimeout(() => {
     observer.next(1);
     setTimeout(() => {
