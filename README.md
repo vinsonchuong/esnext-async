@@ -51,6 +51,30 @@ Wrap an `async` callback function and re-throw any exceptions. `tryCatch` is
 useful when passing `async` callback functions to libraries that are unaware
 of `async` functions.
 
+### Control Flow
+
+#### Parallel
+```js
+import {parallel} from 'esnext-async';
+
+test(async (t) => {
+  await parallel(
+    async () => {
+      await browser.open('https://google.com');
+    },
+    async () => {
+      t.is(await browser.requestLogs, 'https://google.com');
+      t.is(await browser.requestLogs, 'https://google.com/some-image.png');
+    }
+  )
+});
+```
+
+Start multiple sequences of `async` work at the same time and wait until every
+sequence is complete. `parallel` is useful for interleaving fast `async` calls
+with slow `async` calls. In the above example, the two assertions are executed
+after `browser.open` begins but before it resolves.
+
 ### Observables
 
 #### Observable
