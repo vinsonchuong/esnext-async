@@ -11,12 +11,12 @@ export default class {
   }
 
   consume() {
-    if (this.values.length === 0) {
-      return new Promise((resolve) => {
+    return new Promise((resolve) => {
+      if (this.values.length === 0) {
         this.requests.push(resolve);
-      });
-    } else {
-      return Promise.resolve(this.values.shift());
-    }
+      } else {
+        resolve(this.values.shift());
+      }
+    });
   }
 }

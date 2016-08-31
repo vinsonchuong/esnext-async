@@ -1,7 +1,7 @@
 import {parallel} from 'esnext-async';
 import PromiseQueue from 'esnext-async/lib/promise_queue';
 
-fdescribe('PromiseQueue', () => {
+describe('PromiseQueue', () => {
   it('can publish and consume a single value', async () => {
     const queue = new PromiseQueue();
     queue.publish(1);
