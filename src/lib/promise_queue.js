@@ -4,18 +4,31 @@ export default class {
 
   publish(value) {
     if (this.requests.length > 0) {
-      this.requests.shift()(value);
+      this.requests.shift().resolve(value);
     } else {
-      this.values.push(value);
+      this.values.push({value});
+    }
+  }
+
+  throw(error) {
+    if (this.requests.length > 0) {
+      this.requests.shift().reject(value);
+    } else {
+      this.values.push({error});
     }
   }
 
   consume() {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       if (this.values.length === 0) {
-        this.requests.push(resolve);
+        this.requests.push({resolve, reject});
       } else {
-        resolve(this.values.shift());
+        const {value, error} = this.values.shift();
+        if (!Object.is(undefined, error)) {
+          reject(error)
+        } else {
+          resolve(value);
+        }
       }
     });
   }
