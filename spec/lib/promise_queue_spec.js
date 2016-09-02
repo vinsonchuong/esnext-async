@@ -32,7 +32,7 @@ describe('PromiseQueue', () => {
 
   it('can propagate errors', async () => {
     const queue = new PromiseQueue();
-    queue.throw(new Error('Error'));
-    expect(await catchError(queue.consume())).toBe('Error');
+    queue.throw(new Error('This is an error'));
+    expect(await catchError(queue.consume())).toBe('This is an error');
   });
 });

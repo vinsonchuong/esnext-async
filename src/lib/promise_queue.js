@@ -12,7 +12,7 @@ export default class {
 
   throw(error) {
     if (this.requests.length > 0) {
-      this.requests.shift().reject(value);
+      this.requests.shift().reject(error);
     } else {
       this.values.push({error});
     }
@@ -23,11 +23,11 @@ export default class {
       if (this.values.length === 0) {
         this.requests.push({resolve, reject});
       } else {
-        const {value, error} = this.values.shift();
-        if (!Object.is(undefined, error)) {
-          reject(error)
+        const item = this.values.shift();
+        if ('error' in item) {
+          reject(item.error);
         } else {
-          resolve(value);
+          resolve(item.value);
         }
       }
     });
