@@ -1,33 +1,17 @@
 import Observable from 'zen-observable';
+import PromiseQueue from 'esnext-async/lib/promise_queue';
 
 export default class extends Observable {
   constructor(subscribe) {
     super(subscribe);
-    this.refreshPromise();
+    this.queue = new PromiseQueue();
     this.subscribe({
-      next: (value) => {
-        this.resolve(value);
-        this.refreshPromise();
-      },
-      error: (error) => {
-        this.reject(error);
-        this.refreshPromise();
-      }
+      next: ::this.queue.publish,
+      error: ::this.queue.throw
     });
   }
 
   then(...args) {
-    return this.promise.then(...args);
-  }
-
-  catch(...args) {
-    return this.promise.catch(...args);
-  }
-
-  refreshPromise() {
-    this.promise = new Promise((resolve, reject) => {
-      this.resolve = resolve;
-      this.reject = reject;
-    });
+    return this.queue.consume().then(...args);
   }
 }

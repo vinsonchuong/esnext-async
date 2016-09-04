@@ -10,15 +10,9 @@ describe('AwaitableObservable', () => {
 
   it('allows users to await each value', async () => {
     const observable = new AwaitableObservable((observer) => {
-      setTimeout(() => {
-        observer.next(1);
-        setTimeout(() => {
-          observer.next(2);
-          setTimeout(() => {
-            observer.error(new Error('error'));
-          }, 0);
-        }, 0);
-      }, 0);
+      observer.next(1);
+      observer.next(2);
+      observer.error(new Error('error'));
     });
 
     expect(await observable).toBe(1);
@@ -28,14 +22,9 @@ describe('AwaitableObservable', () => {
 
   it('supports chained transforms', async () => {
     const observable = new AwaitableObservable((observer) => {
-      setTimeout(() => {
-        observer.next(1);
-        setTimeout(() => {
-          observer.next(2);
-        }, 0);
-      }, 0);
-    })
-      .map((value) => 2 * value);
+      observer.next(1);
+      observer.next(2);
+    }).map((value) => 2 * value);
 
     expect(observable instanceof AwaitableObservable).toBe(true);
     expect(await observable).toBe(2);
