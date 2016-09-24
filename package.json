@@ -1,6 +1,6 @@
 {
   "name": "esnext-async",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Patterns for asynchronous computation in ES.next",
   "keywords": ["esnext", "async", "observable", "promise"],
   "homepage": "https://github.com/vinsonchuong/esnext-async",
