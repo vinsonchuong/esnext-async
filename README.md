@@ -75,6 +75,18 @@ sequence is complete. `parallel` is useful for interleaving fast `async` calls
 with slow `async` calls. In the above example, the two assertions are executed
 after `browser.open` begins but before it resolves.
 
+#### Sleep
+```js
+import {sleep, run} from 'esnext-async';
+run(async () => {
+  await sleep();
+  await sleep(1000);
+});
+```
+
+Pauses execution using `setTimeout`. When given no arguments, `0` is passed to
+`setTimeout`.
+
 ### Observables
 
 #### Observable
